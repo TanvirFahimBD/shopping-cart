@@ -42,7 +42,7 @@
                       <i class="fas fa-plus"></i>
                     </button>
                   </div>
-                  <h5>$1219</h5>
+                  <h5>$ <span id="product1CurrentPrice">1219</span></h5>
                   <img src="images/remove.png" alt="" class="remove-item" />
                 </div>
               </div>
@@ -60,6 +60,7 @@
                       <i class="fas fa-minus"></i>
                     </button>
                     <input
+                      id="case-count"
                       type="text"
                       class="form-control text-center"
                       value="1"
@@ -68,7 +69,7 @@
                       <i class="fas fa-plus"></i>
                     </button>
                   </div>
-                  <h5>$59</h5>
+                  <h5 id="case-total">$ <span>59</span></h5>
                   <img src="images/remove.png" alt="" class="remove-item" />
                 </div>
               </div>
@@ -98,15 +99,39 @@
         </div>
       </div>
       <script>
-        const product1AddBtn = document.getElementById('product1Add');
-        product1AddBtn.addEventListener('click', function () {
-          const product1CurrentItem = document.getElementById(
-            'product1Current'
-          );
-          const product1CurrentNumber = parseInt(product1CurrentItem.value);
-          const product1NewNumber = product1CurrentNumber + 1;
-          product1CurrentItem.value = product1NewNumber;
-        });
+        //Product 1
+
+        //   const product1AddBtn = document.getElementById('product1Add');
+        //   product1AddBtn.addEventListener('click', function () {
+        //     const product1CurrentItem = document.getElementById(
+        //       'product1Current'
+        //     );
+        //     const product1CurrentNumber = parseInt(product1CurrentItem.value);
+        //     const product1NewNumber = product1CurrentNumber + 1;
+        //     product1CurrentItem.value = product1NewNumber;
+
+        //     const product1CurrentItemPrice = document.getElementById(
+        //       'product1CurrentPrice'
+        //     );
+        //     const product1CurrentPrice = parseInt(
+        //       product1CurrentItemPrice.innerText
+        //     );
+        //     const product1Price = product1NewNumber * 1219;
+        //     product1CurrentItemPrice.innerText = product1Price;
+        //   });
+
+        //Product 2
+
+        document
+          .getElementById('case-increase')
+          .addEventListener('click', function () {
+            const caseInput = document.getElementById('case-count');
+            const caseCount = parseInt(caseInput.value);
+            const caseNewCount = caseCount + 1;
+            caseInput.value = caseNewCount;
+            const caseTotal = caseNewCount * 59;
+            document.getElementById('case-total').innerText = '$' + caseTotal;
+          });
       </script>
     </section>
   </body>
