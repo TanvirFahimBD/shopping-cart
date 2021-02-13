@@ -96,9 +96,9 @@
                 </div>
 
                 <div class="col-md-4 status">
-                  <h5>$1,278</h5>
-                  <h5>$0</h5>
-                  <h5>$1,278</h5>
+                  <h5 id="total-price">$1,278</h5>
+                  <h5 id="tax-amount">$0</h5>
+                  <h5 id="grand-total">$1,278</h5>
                 </div>
               </div>
             </div>
@@ -116,8 +116,7 @@
         //Product 1 & Product 2
 
         function handleProductChange(product, increase) {
-          const productInput = document.getElementById(product + '-count');
-          const productCount = parseInt(productInput.value);
+          const productCount = getInputValue(product);
           let productNewCount = productCount;
           if (increase == true) {
             productNewCount = productCount + 1;
@@ -125,7 +124,7 @@
           if (increase == false && productCount > 0) {
             productNewCount = productCount - 1;
           }
-          productInput.value = productNewCount;
+          document.getElementById(product + '-count').value = productNewCount;
           // const phoneTotal = phoneNewCount * 1219;
           let productTotal = 0;
           if (product == 'phone') {
@@ -137,10 +136,26 @@
 
           document.getElementById(product + '-total').innerText =
             '$' + productTotal;
+          calculateTotal();
         }
 
         function calculateTotal() {
-          document.getElementById();
+          const caseCount = getInputValue('case');
+          const phoneCount = getInputValue('phone');
+
+          const totalPrice = phoneCount * 1219 + caseCount * 59;
+          document.getElementById('total-price').innerText = '$' + totalPrice;
+          const tax = Math.round(totalPrice * 0.1);
+          document.getElementById('tax-amount').innerText = '$' + tax;
+
+          const grandTotal = totalPrice + tax;
+          document.getElementById('grand-total').innerText = '$' + grandTotal;
+        }
+
+        function getInputValue(product) {
+          const productInput = document.getElementById(product + '-count');
+          const productCount = parseInt(productInput.value);
+          return productCount;
         }
 
         //Using functional Code
